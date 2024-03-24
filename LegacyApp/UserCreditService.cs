@@ -38,5 +38,31 @@ namespace LegacyApp
 
             throw new ArgumentException($"Client {lastName} does not exist");
         }
+        
+        public UserCreditLimitDto GetCreditLimitForUserAndType(string lastName, DateTime dateOfBirth, string type)
+        {
+            int limitValue = 0;
+            bool hasCreditLimit = false;
+            switch (type)
+            {
+                case "VeryImportantClient":
+                    break;
+                case "ImportantClient":
+                    limitValue = GetCreditLimit(lastName, dateOfBirth) * 2;
+                    break;
+                default:
+                    hasCreditLimit = true;
+                    limitValue = GetCreditLimit(lastName, dateOfBirth);
+                    break;
+            }
+            
+            return new UserCreditLimitDto
+            {
+                CreditLimitValue = limitValue, 
+                HasCreditLimit = hasCreditLimit
+            };
+        }
+        
+        
     }
 }

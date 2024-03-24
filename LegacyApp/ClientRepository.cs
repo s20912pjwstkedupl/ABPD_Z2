@@ -4,6 +4,9 @@ using System.Threading;
 
 namespace LegacyApp
 {
+    public interface IClientRepository
+    {
+    }
     public class ClientRepository
     {
         /// <summary>
